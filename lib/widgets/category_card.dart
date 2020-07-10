@@ -8,11 +8,10 @@ class CategoryCard extends StatelessWidget {
   CategoryCard({@required this.title, @required this.id, @required this.color});
 
   void navigate(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => CategoryMealsScreen(
-              id: id,
-              title: title,
-            )));
+    Navigator.of(context).pushNamed(
+      CategoryMealsScreen.route,
+      arguments: {'id': id, 'title': title},
+    );
   }
 
   @override

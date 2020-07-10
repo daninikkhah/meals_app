@@ -4,6 +4,7 @@ import '../widgets/category_card.dart';
 import '../constants.dart';
 
 class CategoryScreen extends StatelessWidget {
+  static const String route = 'CategoryScreen';
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
