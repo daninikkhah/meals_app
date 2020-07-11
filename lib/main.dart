@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.white),
             ),
       ),
-      home: CategoryScreen(),
+      initialRoute: CategoryScreen.route,
       routes: {
         CategoryScreen.route: (context) => CategoryScreen(),
         CategoryMealsScreen.route: (context) => CategoryMealsScreen()
