@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/meal.dart';
 import '../constants.dart';
+import '../screens/meal_detail_screen.dart';
 
 class MealCard extends StatelessWidget {
-//  final String id;
+  final String id;
 //  final List<String> categories;
   final String title;
   final String imageUrl;
@@ -18,7 +19,7 @@ class MealCard extends StatelessWidget {
 //  final bool isVegan;
 //  final bool isVegetarian;
   MealCard({
-//        @required this.id,
+    @required this.id,
 //      @required this.categories,
     @required this.title,
     @required this.imageUrl,
@@ -59,7 +60,9 @@ class MealCard extends StatelessWidget {
     }
   }
 
-  void selectMeal() {}
+  void selectMeal(BuildContext context) {
+    Navigator.pushNamed(context, MealDetailScreen.route, arguments: id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +70,7 @@ class MealCard extends StatelessWidget {
     final double width = (MediaQuery.of(context).size.width - 20);
     final double imageTitleWidth = width * 0.8;
     return InkWell(
-      onTap: selectMeal,
+      onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 4,
@@ -77,7 +80,7 @@ class MealCard extends StatelessWidget {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
                   ),
@@ -111,8 +114,8 @@ class MealCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.schedule),
-                      SizedBox(
+                      const Icon(Icons.schedule),
+                      const SizedBox(
                         width: 10,
                       ),
                       Text('$duration min'),
@@ -120,8 +123,8 @@ class MealCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.work),
-                      SizedBox(
+                      const Icon(Icons.work),
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(complexityText),
@@ -129,8 +132,8 @@ class MealCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.attach_money),
-                      SizedBox(
+                      const Icon(Icons.attach_money),
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(affordabilityText),
