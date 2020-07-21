@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mealsapp/screens/category_screen.dart';
+import 'package:mealsapp/screens/main_drawer.dart';
+import '../screens/category_screen.dart';
+import '../screens/favorite_meals_screen.dart';
 
 class TabsScreen extends StatefulWidget {
   static const String route = 'TabsScreen';
@@ -8,7 +10,8 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Widget> screens = [CategoryScreen()];
+  final List<Widget> screens = [CategoryScreen(), FavoriteMealsScreen()];
+  final List<String> title = ['Meal App', 'Favorites'];
   int index = 0;
   void changeIndex(int input) {
     setState(() {
@@ -21,11 +24,12 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Meal App',
+          title[index],
           style: Theme.of(context).textTheme.headline6,
         ),
       ),
-      body: CategoryScreen(),
+      drawer: MainDrawer(),
+      body: screens[index],
       bottomNavigationBar: BottomNavigationBar(
         onTap: changeIndex,
         currentIndex: index,
