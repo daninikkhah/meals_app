@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/meal.dart';
 
+//TODO: make items tapabble and show bigger card on tap
 class IngredientsGridView extends StatelessWidget {
   const IngredientsGridView({
     Key key,
@@ -16,24 +17,27 @@ class IngredientsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height / 5,
+      height: height / 4,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: GridView.builder(
         scrollDirection: Axis.horizontal,
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: height / 10,
-            childAspectRatio: (height / width) * 0.2),
+            maxCrossAxisExtent: height / 8,
+            childAspectRatio: (height / width) * 0.25),
         itemBuilder: (context, i) => Card(
           elevation: 3,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
-                  child: Text(
-                    meal.ingredients[i],
-                    softWrap: true,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      meal.ingredients[i],
+                      style: TextStyle(fontSize: 16),
+                      softWrap: true,
+                    ),
                   ),
                 ),
                 SizedBox(

@@ -3,6 +3,7 @@ import 'package:mealsapp/screens/category_meals_screen.dart';
 import './screens/category_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './screens/meal_detail_screen.dart';
+import './screens/tabs_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,8 +28,9 @@ class MyApp extends StatelessWidget {
                   color: Colors.white),
             ),
       ),
-      initialRoute: CategoryScreen.route,
+      initialRoute: TabsScreen.route,
       routes: {
+        TabsScreen.route: (context) => TabsScreen(),
         CategoryScreen.route: (context) => CategoryScreen(),
         CategoryMealsScreen.route: (context) => CategoryMealsScreen(),
         MealDetailScreen.route: (context) => MealDetailScreen(),

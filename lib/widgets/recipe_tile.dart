@@ -16,7 +16,10 @@ class _RecipeTileState extends State<RecipeTile> {
       leading: CircleAvatar(
         child: Text('#${widget.index + 1}'),
       ),
-      title: Text(widget.step),
+      title: Text(
+        widget.step,
+        style: TextStyle(fontSize: 16),
+      ),
       trailing: Checkbox(
           activeColor: Theme.of(context).primaryColor,
           value: isChecked,
