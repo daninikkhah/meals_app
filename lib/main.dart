@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mealsapp/screens/category_meals_screen.dart';
-import './screens/category_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './screens/meal_detail_screen.dart';
 import './screens/tabs_screen.dart';
+import './screens/filter_settings_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
                       Color.fromRGBO(20, 51, 51, 1)), // is const useful here?
               bodyText2: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
               headline6: GoogleFonts.damion().copyWith(
-                  fontSize: 26,
+                  fontSize: 30,
                   fontWeight: FontWeight.w900,
                   color: Colors.white),
             ),
@@ -31,12 +31,13 @@ class MyApp extends StatelessWidget {
       initialRoute: TabsScreen.route,
       routes: {
         TabsScreen.route: (context) => TabsScreen(),
-        CategoryScreen.route: (context) => CategoryScreen(),
+        //CategoryScreen.route: (context) => CategoryScreen(),
         CategoryMealsScreen.route: (context) => CategoryMealsScreen(),
         MealDetailScreen.route: (context) => MealDetailScreen(),
+        FilterSettingsScreen.route: (context) => FilterSettingsScreen(),
       },
       onUnknownRoute: (settings) =>
-          MaterialPageRoute(builder: (context) => CategoryScreen()),
+          MaterialPageRoute(builder: (context) => TabsScreen()),
     );
   }
 }

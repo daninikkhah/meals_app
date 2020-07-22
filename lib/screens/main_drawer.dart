@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './tabs_screen.dart';
+import './filter_settings_screen.dart';
 
 class MainDrawer extends StatelessWidget {
+  void func() {}
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,25 +22,32 @@ class MainDrawer extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
-            const ListTile(
+            ListTile(
               leading: Icon(
                 Icons.restaurant_menu,
                 size: 26,
               ),
               title: Text(
                 'Meals',
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(TabsScreen.route);
+              },
             ),
-            const ListTile(
+            ListTile(
               leading: Icon(
                 Icons.search,
                 size: 26,
               ),
               title: Text(
                 'Filters',
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(FilterSettingsScreen.route);
+              },
             ),
           ],
         ),

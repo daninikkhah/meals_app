@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data_sample.dart';
 import '../widgets/category_card.dart';
-import '../constants.dart';
 
 class CategoryScreen extends StatelessWidget {
   static const String route = 'CategoryScreen';
