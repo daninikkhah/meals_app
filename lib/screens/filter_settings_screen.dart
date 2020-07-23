@@ -4,16 +4,18 @@ import '../widgets/filter_switch_list_tile.dart';
 
 class FilterSettingsScreen extends StatefulWidget {
   static const String route = 'filter settings screen';
+  final Function setFilters;
+  FilterSettingsScreen(this.setFilters);
 
   @override
   _FilterSettingsScreenState createState() => _FilterSettingsScreenState();
 }
 
 class _FilterSettingsScreenState extends State<FilterSettingsScreen> {
-  bool isGlutenFree = false;
-  bool isLactoseFree = false;
-  bool isVegan = false;
-  bool isVegetarian = false;
+  bool _isGlutenFree = false;
+  bool _isLactoseFree = false;
+  bool _isVegan = false;
+  bool _isVegetarian = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +24,11 @@ class _FilterSettingsScreenState extends State<FilterSettingsScreen> {
           'Filter Settings',
           style: Theme.of(context).textTheme.headline6,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => widget.setFilters(
+            _isGlutenFree, _isLactoseFree, _isVegan, _isVegetarian),
+        child: Icon(Icons.search),
       ),
       drawer: MainDrawer(),
       body: Column(
@@ -37,41 +44,40 @@ class _FilterSettingsScreenState extends State<FilterSettingsScreen> {
           FilterSwitchListTile(
             title: 'vegan',
             subtitle: 'only included vegan meals.',
-            switchValue: isVegan,
+            switchValue: _isVegan,
             onChanged: (newValue) {
               setState(() {
-                isVegan = newValue;
+                _isVegan = newValue;
               });
             },
           ),
           FilterSwitchListTile(
             title: 'vegetarian',
             subtitle: 'only included vegetarian meals.',
-            switchValue: isVegetarian,
+            switchValue: _isVegetarian,
             onChanged: (newValue) {
               setState(() {
-                print(isVegetarian);
-                isVegetarian = newValue;
+                _isVegetarian = newValue;
               });
             },
           ),
           FilterSwitchListTile(
             title: 'gluten-Free',
             subtitle: 'only included gluten-Free meals.',
-            switchValue: isGlutenFree,
+            switchValue: _isGlutenFree,
             onChanged: (newValue) {
               setState(() {
-                isGlutenFree = newValue;
+                _isGlutenFree = newValue;
               });
             },
           ),
           FilterSwitchListTile(
             title: 'lactose-Free',
             subtitle: 'only included lactose-Free meals.',
-            switchValue: isLactoseFree,
+            switchValue: _isLactoseFree,
             onChanged: (newValue) {
               setState(() {
-                isLactoseFree = newValue;
+                _isLactoseFree = newValue;
               });
             },
           )
