@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './tabs_screen.dart';
 import './main_drawer.dart';
 import '../widgets/filter_switch_list_tile.dart';
 
@@ -26,8 +27,11 @@ class _FilterSettingsScreenState extends State<FilterSettingsScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => widget.setFilters(
-            _isGlutenFree, _isLactoseFree, _isVegan, _isVegetarian),
+        onPressed: () {
+          widget.setFilters(
+              _isGlutenFree, _isLactoseFree, _isVegan, _isVegetarian);
+          Navigator.of(context).pushNamed(TabsScreen.route);
+        },
         child: Icon(Icons.search),
       ),
       drawer: MainDrawer(),

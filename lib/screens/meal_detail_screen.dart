@@ -6,7 +6,10 @@ import '../widgets/recipe_tile.dart';
 import '../widgets/ingredient_grid_view.dart';
 
 class MealDetailScreen extends StatelessWidget {
+  MealDetailScreen({@required this.isFavorite, @required this.toggleFavorite});
   static const String route = 'MealDetailScreen';
+  final Function isFavorite;
+  final Function toggleFavorite;
   @override
   Widget build(BuildContext context) {
     final String id = ModalRoute.of(context).settings.arguments;
@@ -17,6 +20,11 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
+        actions: [
+          IconButton(
+              icon: Icon(isFavorite(id) ? Icons.star : Icons.star_border),
+              onPressed: () => toggleFavorite(id))
+        ],
       ),
       body: SafeArea(
         child: Container(

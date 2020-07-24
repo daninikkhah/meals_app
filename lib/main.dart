@@ -16,12 +16,29 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+//widget.
 class _MyAppState extends State<MyApp> {
   List<Meal> availableMeals = DUMMY_MEALS;
+  List<Meal> favoriteMeals = [];
   bool _isGlutenFree = false;
   bool _isLactoseFree = false;
   bool _isVegan = false;
   bool _isVegetarian = false;
+
+  bool _isFavoriteMeal(String id) => favoriteMeals.any((meal) => meal.id == id);
+
+  void _toggleFavoriteMeal(String id) {
+    setState(() {
+      if (favoriteMeals.any((meal) => meal.id == id)) {
+        setState(() {
+          favoriteMeals.removeWhere((meal) => meal.id == id);
+        });
+      } else
+        favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == id));
+    });
+    //TODO store meal
+  }
+
   void _setFilters(
       bool isGlutenFree, bool isLactoseFree, bool isVegan, bool isVegetarian) {
     setState(() {
@@ -59,16 +76,19 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: TabsScreen.route,
       routes: {
-        TabsScreen.route: (context) => TabsScreen(),
+        TabsScreen.route: (context) => TabsScreen(favoriteMeals: favoriteMeals),
         //CategoryScreen.route: (context) => CategoryScreen(),
         CategoryMealsScreen.route: (context) =>
             CategoryMealsScreen(availableMeals),
-        MealDetailScreen.route: (context) => MealDetailScreen(),
+        MealDetailScreen.route: (context) => MealDetailScreen(
+              isFavorite: _isFavoriteMeal,
+              toggleFavorite: _toggleFavoriteMeal,
+            ),
         FilterSettingsScreen.route: (context) =>
             FilterSettingsScreen(_setFilters),
       },
-      onUnknownRoute: (settings) =>
-          MaterialPageRoute(builder: (context) => TabsScreen()),
+      onUnknownRoute: (settings) => MaterialPageRoute(
+          builder: (context) => TabsScreen(favoriteMeals: favoriteMeals)),
     );
   }
 }
