@@ -25,7 +25,7 @@ class FavoriteMealsScreen extends StatelessWidget {
                 duration: meals[index].duration,
                 complexity: meals[index].complexity,
                 affordability: meals[index].affordability,
-              ); //TODO: meal card
+              );
             },
             itemCount: meals.length,
           );
